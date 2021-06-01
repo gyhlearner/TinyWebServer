@@ -4,8 +4,8 @@ int main(int argc, char *argv[])
 {
     //需要修改的数据库信息,登录名,密码,库名
     string user = "root";
-    string passwd = "root";
-    string databasename = "yourdb";
+    string passwd = "gyh0314."; // 默认是ubuntu的root用户的密码
+    string databasename = "webdb";
 
     //命令行解析
     Config config;
