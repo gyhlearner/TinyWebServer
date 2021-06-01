@@ -76,8 +76,8 @@ public:
     void init(int sockfd, const sockaddr_in &addr, char *, int, int, string user, string passwd, string sqlname);
     void close_conn(bool real_close = true);
     void process();
-    bool read_once();
-    bool write();
+    bool read_once();   // 用于Reactor模式
+    bool write();   // 用于Reactor模式
     sockaddr_in *get_address()
     {
         return &m_address;
@@ -111,7 +111,7 @@ public:
     static int m_epollfd;
     static int m_user_count;
     MYSQL *mysql;
-    int m_state;  //读为0, 写为1
+    int m_state;  //读为0, 写为1    // 用于Reactor模式
 
 private:
     int m_sockfd;

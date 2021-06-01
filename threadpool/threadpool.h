@@ -15,8 +15,8 @@ public:
     /*thread_number是线程池中线程的数量，max_requests是请求队列中最多允许的、等待处理的请求的数量*/
     threadpool(int actor_model, connection_pool *connPool, int thread_number = 8, int max_request = 10000);
     ~threadpool();
-    bool append(T *request, int state);
-    bool append_p(T *request);
+    bool append(T *request, int state); // 用于Reactor模式的向请求队列添加任务，只是比Proactor的多了个state--用于告诉线程是执行“读+逻辑处理”还是“写+逻辑处理”，（该项目中写完成之后没有逻辑处理，故Proactor模式的工作线程只可能是执行“读完成后的逻辑处理”）
+    bool append_p(T *request);  // 用于Proactor模式的向请求队列添加任务
 
 private:
     /*工作线程运行的函数，它不断从工作队列中取出任务并执行之*/
@@ -113,7 +113,7 @@ void threadpool<T>::run()
         m_queuelocker.unlock();
         if (!request)
             continue;
-        if (1 == m_actor_model)
+        if (1 == m_actor_model) //这是Reactor模式
         {
             if (0 == request->m_state)
             {
@@ -142,7 +142,7 @@ void threadpool<T>::run()
                 }
             }
         }
-        else
+        else    //这是Proactor模式
         {
             connectionRAII mysqlcon(&request->mysql, m_connPool);
             request->process();
