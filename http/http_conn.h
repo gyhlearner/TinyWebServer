@@ -135,10 +135,10 @@ private:
     struct iovec m_iv[2];
     int m_iv_count;
     int cgi;        //是否启用的POST
-    char *m_string; //存储请求头数据
+    char *m_string; //存储请求头数据    // 用于存储POST请求中的请求体的内容
     int bytes_to_send;
     int bytes_have_send;
-    char *doc_root;
+    char *doc_root; // 资源的路径
 
     map<string, string> m_users;
     int m_TRIGMode;
