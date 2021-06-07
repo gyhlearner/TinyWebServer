@@ -106,7 +106,7 @@ void WebServer::eventListen()
     m_listenfd = socket(PF_INET, SOCK_STREAM, 0);
     assert(m_listenfd >= 0);
 
-    //优雅关闭连接
+    //优雅关闭连接  // 详见《游双》5.11.4
     if (0 == m_OPT_LINGER)
     {
         struct linger tmp = {0, 1};

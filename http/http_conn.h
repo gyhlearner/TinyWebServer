@@ -141,8 +141,8 @@ private:
     char *doc_root; // 资源的路径
 
     map<string, string> m_users;
-    int m_TRIGMode;
-    int m_close_log;
+    int m_TRIGMode; // ET or LT 的控制flag
+    int m_close_log;    // 是否关闭日志的控制flag   // 疑问：放在http_conn类里貌似没啥用呀？
 
     char sql_user[100];
     char sql_passwd[100];

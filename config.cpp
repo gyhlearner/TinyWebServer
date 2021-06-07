@@ -34,8 +34,8 @@ Config::Config(){
 
 void Config::parse_arg(int argc, char*argv[]){
     int opt;
-    const char *str = "p:l:m:o:s:t:c:a:";
-    while ((opt = getopt(argc, argv, str)) != -1)
+    const char *str = "p:l:m:o:s:t:c:a:";   // getopt相关参考https://www.cnblogs.com/qingergege/p/5914218.html
+    while ((opt = getopt(argc, argv, str)) != -1)   // str为选项字符串，返回给opt的选项字符
     {
         switch (opt)
         {
